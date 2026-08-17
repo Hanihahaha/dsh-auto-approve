@@ -1,0 +1,30 @@
+# dsh-auto-approve bundle patch: inserts the auto-approve plugin and extends
+# the permission-preset table with an "auto-approve" (自动审批) option.
+# Installing this package with `dsh plugin --profile <name> add <path>` makes
+# the rows below active on the next boot of that profile.
+- insert:
+    - id: auto-approve
+      name: dsh-auto-approve
+
+# Permission selector extension: the "auto-approve" preset keeps the
+# workspace-write sandbox boundary while the auto-approve plugin auto-grants
+# the approval requests (ask policy is fine because the plugin short-circuits
+# the approval/request waterfall and returns allowed-once). No name/description
+# fields: the selector renders kebab keys as Title Case, matching the other
+# shipped presets.
+- id: permission
+  name: '@deepseek-ai/dsh-permission-presets'
+  config:
+    presets:
+      read-only:
+        sandbox: read-only
+        approval: ask
+      workspace-write:
+        sandbox: workspace-write
+        approval: ask
+      danger-full-access:
+        sandbox: danger-full-access
+        approval: never
+      auto-approve:
+        sandbox: workspace-write
+        approval: ask
