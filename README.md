@@ -14,8 +14,8 @@ A DeepSeek Harness plugin that adds an auto-approve permission mode and can auto
 ## Install
 
 ```powershell
-# Local package installation
-dsh plugin --profile web add "E:\Project\deepseek-harness-plugins\packages\dsh-auto-approve"
+# Install from the repository root.
+dsh plugin --profile web add ".\packages\dsh-auto-approve"
 
 # Or, after publishing
 dsh plugin --profile web add dsh-auto-approve
