@@ -20,7 +20,7 @@ DeepSeek Harness 的**自动审批模式**插件：自动批准审批请求，�
 
 ```powershell
 # 从仓库根目录通过本地路径安装
-dsh plugin --profile web add ".\packages\dsh-auto-approve"
+dsh plugin --profile web add ".\dsh-auto-approve"
 
 # 或发布到 npm 后按包名安装
 dsh plugin --profile web add dsh-auto-approve
