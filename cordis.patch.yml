@@ -9,9 +9,14 @@
 # Permission selector extension: the "auto-approve" preset keeps the
 # workspace-write sandbox boundary while the auto-approve plugin auto-grants
 # the approval requests (ask policy is fine because the plugin short-circuits
-# the approval/request waterfall and returns allowed-once). No name/description
-# fields: the selector renders kebab keys as Title Case, matching the other
-# shipped presets.
+# the approval/request waterfall and returns allowed-once).
+#
+# Its knob bundle is identical to "workspace-write" on purpose — the difference
+# is which preset name the session records, and the plugin reads that name. The
+# `description` is what tells the two apart in the /permission menu and in the
+# session selector. No `name` field: the client renders a missing label by
+# title-casing the kebab key (displayPresetName), so "auto-approve" shows as
+# "Auto Approve"; adding a `name` here would override that rendering verbatim.
 - id: permission
   name: '@deepseek-ai/dsh-permission-presets'
   config:
@@ -28,3 +33,4 @@
       auto-approve:
         sandbox: workspace-write
         approval: ask
+        description: 自动批准全部审批请求；沙箱边界仍为 workspace-write（比 danger-full-access 更克制）
